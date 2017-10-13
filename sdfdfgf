@@ -1,0 +1,1 @@
+ <!DOCTYPE html> <html><head> <title>ShoppingBasketHTML< / title> < / head> < body >< table border="1"> <tr><td>ID< / td><td>Size< / td><td>Length< / td><td>Colour< / td><td>Price< / td><td>Quantity< / td><td>Photograph link< / td>< / tr><tr> <td>1< / td><td>34< / td><td>20< / td><td>"beige"< / td><td>125< / td><td>191< / td>< / tr>

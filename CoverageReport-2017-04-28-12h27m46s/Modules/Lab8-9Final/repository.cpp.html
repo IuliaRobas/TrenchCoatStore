@@ -1,0 +1,170 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>repository.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "Repository.h"
+#include &lt;string&gt;
+#include &lt;assert.h&gt;
+using namespace std;
+
+TrenchCoat Repository::findByID(const int&amp; ID)
+<span style = "background-color:#dfd">{
+	std::vector&lt;TrenchCoat&gt; coatsInRepo = this-&gt;trenchCoats;
+	if (coatsInRepo.size() == 0)
+		return TrenchCoat{};</span>
+
+	//for (int i = 0; i &lt; this-&gt;trenchCoats.size(); i++)
+<span style = "background-color:#dfd">	for (std::vector&lt;TrenchCoat&gt;::iterator it = this-&gt;trenchCoats.begin(); it != this-&gt;trenchCoats.end(); it++)</span>
+	{
+
+		//TrenchCoat c = coatsInRepo[i];
+<span style = "background-color:#dfd">		TrenchCoat c = *it;
+		if (c.getID() == ID)
+			return c;</span>
+		//return this-&gt;trenchCoats.getElementOnPos(i);
+<span style = "background-color:#dfd">	}
+	return TrenchCoat{};</span>
+
+<span style = "background-color:#dfd">}</span>
+
+int Repository::addCoat(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	TrenchCoat found = this-&gt;findByID(c.getID());
+	if (found.getID() != 0)
+		return 0;
+	this-&gt;trenchCoats.push_back(c);
+	return 1;</span>
+
+<span style = "background-color:#dfd">}</span>
+
+int Repository::deleteCoat(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	TrenchCoat found = this-&gt;findByID(c.getID());
+	if (found.getID() == 0)
+		return 0;
+	int pos = this-&gt;findPositionByID(c.getID());
+	this-&gt;trenchCoats.erase(trenchCoats.begin() + pos);
+	return 1;
+}</span>
+
+int Repository::updateCoat(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	int pos = this-&gt;findPositionByID(c.getID());
+	if (this-&gt;trenchCoats.size() == 0)
+		return 0;
+	if (pos == -1)
+		return 0;</span>
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#dfd">		this-&gt;trenchCoats[pos].setSize(c.getSize());
+		this-&gt;trenchCoats[pos].setColour(c.getColour());
+		this-&gt;trenchCoats[pos].setPrice(c.getPrice());
+		this-&gt;trenchCoats[pos].setQuantity(c.getQuantity());
+		this-&gt;trenchCoats[pos].setPhotograph(c.getPhotograph());
+		return 1;</span>
+	}
+
+<span style = "background-color:#dfd">}</span>
+
+
+int Repository::findPositionByID(const int&amp; ID)
+<span style = "background-color:#dfd">{
+	std::vector &lt;TrenchCoat&gt; coatsInRepo = this-&gt;trenchCoats;
+	if (coatsInRepo.size() == 0)
+		return -1;</span>
+
+<span style = "background-color:#dfd">	for (int i = 0; i &lt; this-&gt;trenchCoats.size(); i++)</span>
+	{
+
+<span style = "background-color:#dfd">		TrenchCoat c = coatsInRepo[i];
+		if (c.getID() == ID)
+			return i;
+	}
+	return -1;
+}</span>
+
+int Repository::updateCoatRef(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	TrenchCoat&amp; found = this-&gt;findByIDRef(c.getID());
+	if (found.getID() == 0)
+		return 0;</span>
+	//TrenchCoat c1 = this-&gt;findByID(c.getID());
+	//int pos = this-&gt;findPositionByID(c.getID());
+	//TrenchCoat c1 = this-&gt;trenchCoats.getElementOnPos(pos);
+<span style = "background-color:#dfd">	std::vector &lt;TrenchCoat&gt; coatsInRepo = this-&gt;trenchCoats;
+	if (coatsInRepo.size() == 0)</span>
+<span style = "background-color:#fdd">		return 0;</span>
+
+<span style = "background-color:#dfd">	found.setSize(c.getSize());
+	found.setColour(c.getColour());
+	found.setPrice(c.getPrice());
+	found.setQuantity(c.getQuantity());
+	found.setPhotograph(c.getPhotograph());
+	return 1;
+}</span>
+
+TrenchCoat&amp; Repository::findByIDRef(const int&amp;ID)
+<span style = "background-color:#dfd">{</span>
+
+<span style = "background-color:#dfd">	std::vector &lt;TrenchCoat&gt; coatsInRepo = this-&gt;trenchCoats;
+	if (coatsInRepo.size() == 0)
+		return TrenchCoat{};</span>
+
+<span style = "background-color:#dfd">	for (int i = 0; i &lt; this-&gt;trenchCoats.size(); i++)</span>
+	{
+
+<span style = "background-color:#dfd">		TrenchCoat c = coatsInRepo[i];
+		if (c.getID() == ID)
+			return this-&gt;trenchCoats[i];
+	}
+	return TrenchCoat{};
+}</span>
+
+
+
+/*
+void testRepository()
+{
+	Repository repo{};
+	TrenchCoat c1(11, 34, 15, "beige", 100, 200, "https://cache.net-a-porter.com/images/products/372462/372462_in_pp.jpg");
+	assert(repo.addCoat(c1) == 1);
+	assert(repo.getCoats().size() == 1);
+	TrenchCoat test1 = repo.findByID(11);
+	assert(test1.getColour() == "beige");
+	TrenchCoat test2 = repo.findByID(55);
+	assert(test2.getID() == 0);
+	TrenchCoat c2(11, 28, 15, "blue", 100, 200, "google.ro");
+	assert(repo.addCoat(c2) == 0);
+	assert(repo.getCoats().size() == 1);
+	assert(repo.deleteCoat(c1) == 1);
+	TrenchCoat c3(23, 28, 15, "white", 100, 200, "ssa.com");
+	assert(repo.deleteCoat(c3) == 0);
+	assert(repo.getCoats().size() == 0);
+
+
+	assert(repo.updateCoatRef(c3) == 0);
+	assert(repo.addCoat(c1) == 1);
+	assert(repo.getCoats().size() == 1);
+	TrenchCoat c4(11, 22, 15, "ssd", 1, 2, "ewe");
+	assert(repo.updateCoatRef(c4) == 1);
+
+	for (int i = 0; i &lt; repo.getCoats().size(); i++)
+	{
+		TrenchCoat ex = repo.getCoats()[i];
+		assert(ex.getColour() == "ssd");
+		//cout &lt;&lt; "hi";
+		//cout &lt;&lt; ex.getID() &lt;&lt; " " &lt;&lt; ex.getSize() &lt;&lt; " " &lt;&lt; ex.getColour()&lt;&lt;" "&lt;&lt;ex.getPrice() &lt;&lt;" "&lt;&lt;ex.getQuantity()&lt;&lt; endl;
+	}
+	cout &lt;&lt; "Repository tested" &lt;&lt; endl;
+
+
+}*/</pre>
+	</body>
+</html>

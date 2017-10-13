@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Controller" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACAQSAQAAAhAAEEAAAQAEAAQAAAAAAEAIAAkAA=</HashCode>
+      <FileName>Controller.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSVShoppingBasket" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAA=</HashCode>
+      <FileName>CSVShoppingBasket.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileShoppingBasket" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAABAAAAAAAABAAAABAAAAABAAQAAA=</HashCode>
+      <FileName>FileShoppingBasket.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HTMLShoppingBasket" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAA=</HashCode>
+      <FileName>HTMLShoppingBasket.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Repository" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIMAAAAAEAEAgAAAgAAAEAAAAAAAQABAAAAAAAA=</HashCode>
+      <FileName>Repository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileException" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>RepositoryExceptions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RepositoryException" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAIAAAAAAAAACAAAAAAAAAAACA=</HashCode>
+      <FileName>RepositoryExceptions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DuplicateTrenchCoatException" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepositoryExceptions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InexistentTrenchCoatException" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepositoryExceptions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RepositoryFile" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIFBAAAAEAAAhAAQgAAAEAAAAAAAQABABAAEAAA=</HashCode>
+      <FileName>RepositoryFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShoppingBasket" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAIAQAAEgCAAAAAAAgAAAAAAAAAAAAAICQAQ=</HashCode>
+      <FileName>ShoppingBasket.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABAQAAAAAAAAAAAAEAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Tests.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrenchCoat" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAABAAJAAIAEgAiAAMAAARAAAAFABCGUAAAiAAAACAA=</HashCode>
+      <FileName>TrenchCoat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrenchCoatException" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TrenchCoatValidator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrenchCoatValidator" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TrenchCoatValidator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAREAAAACACAKAAYAACAIAhGgBRKAIAAAABAAAAAEAA=</HashCode>
+      <FileName>UI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VirtualRepository" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIEAAAAAEAAAgAAAgAAAEAAAAAAAQABAAAAAAAA=</HashCode>
+      <FileName>VirtualRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

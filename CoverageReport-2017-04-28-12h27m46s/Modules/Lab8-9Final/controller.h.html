@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>controller.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include "Repository.h"
+#include "ShoppingBasket.h"
+
+class Controller
+{
+private:
+	Repository repo;
+	ShoppingBasket basket;
+
+public:
+<span style = "background-color:#dfd">	Controller(const Repository&amp; r) : repo(r) {}</span>
+	
+<span style = "background-color:#dfd">	Repository getRepo() const { return repo; }
+	ShoppingBasket getShoppingBasket() const { return basket; }</span>
+
+	/// &lt;summary&gt;
+	/// Adds a trench coat with the given data to the repository.
+	/// &lt;/summary&gt;
+	/// &lt;returns&gt; 1 - If the coat was successfully added to the repository, 0 - otherwise.&lt;/returns&gt;
+	int addCoatToRepository(const int&amp; ID, const double&amp; size, const double&amp;length, const std::string&amp; colour, const double&amp; price, const double&amp; quantity, const std::string&amp; photograph);
+
+	/// &lt;summary&gt;
+	/// Deletes a trench coat from the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;1 - If the coat was deleted from the repository, 0 - if the coat could not be deleted, as there isn't any trench coat in the repository with the given ID.&lt;/returns&gt;
+	int deleteCoatFromRepository(const int&amp; ID);
+
+	/// &lt;summary&gt;
+	/// Updates a trench coat from the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;1 - If the coat was updated from the repository, 0 - if the coat could not be updated, as there isn't any trench coat in the repository with the given ID.&lt;/returns&gt;
+	int updateCoatFromRepository(const int&amp; ID, const double&amp; size, const double&amp;length, const std::string&amp; colour, const double&amp; price, const double&amp; quantity, const std::string&amp; photograph);
+
+	//DynamicVector&amp; sortByPrice(DynamicVector&amp; trenchCoats);
+
+	/// &lt;summary&gt;
+	/// Sorts a given vector of trench coats, ascendingly by price.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "trenchCoats"&gt;A vector of trench coats.&lt;/param&gt;
+	/// &lt;returns&gt;The vector of trench coats sorted&lt;/returns&gt;
+	std::vector&lt;TrenchCoat&gt;&amp; sortByPrice(std::vector&lt;TrenchCoat&gt;&amp; trenchCoats);
+
+	/// &lt;summary&gt;
+	/// Returns a vector of trench coats having a given size.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "length"&gt;A double, representing the size to search for.&lt;/param&gt;
+	/// &lt;returns&gt;A vector of trench coats having the given size.&lt;/returns&gt;
+	std::vector&lt;TrenchCoat&gt; listTrenchCoatsWithSizeCtrl(const double&amp; size);
+
+	/// &lt;summary&gt;
+	/// Returns a vector of trench coats with length smaller than a given one.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "length"&gt;A double, representing the length to search for.&lt;/param&gt;
+	/// &lt;returns&gt;A vector of trench coats with length smaller than the given one.&lt;/returns&gt;
+	std::vector&lt;TrenchCoat&gt; listTrenchCoatsWithLengthSmallerThanCtrl(const double&amp; length);
+
+	/// &lt;summary&gt;
+	/// Adds a trench coat to the shopping basket.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A trench coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;The trench coat is added to the shopping basket.&lt;/returns&gt;
+	void addCoatToShoppingBasketCtrl(const TrenchCoat&amp; c);
+
+	void Controller::startShoppingBasket();
+	void Controller::nextTrenchCoatsShoppingBasket();
+};</pre>
+	</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>controller.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "Controller.h"
+#include &lt;algorithm&gt;
+int Controller::addCoatToRepository(const int&amp;ID, const double&amp; size, const double&amp; length, const std::string&amp; colour, const double&amp; price, const double&amp; quantity, const std::string&amp; photograph)
+<span style = "background-color:#dfd">{
+	TrenchCoat c{ ID, size, length,colour,price,quantity,photograph };
+	int res = this-&gt;repo.addCoat(c);
+	return res;
+}</span>
+
+int Controller::deleteCoatFromRepository(const int&amp; ID)
+<span style = "background-color:#dfd">{
+	TrenchCoat c = this-&gt;repo.findByID(ID);
+	int res = this-&gt;repo.deleteCoat(c);
+	return res;
+}</span>
+
+int Controller::updateCoatFromRepository(const int&amp;ID, const double&amp; size, const double&amp;length, const std::string&amp; colour, const double&amp; price, const double&amp; quantity, const std::string&amp; photograph)
+<span style = "background-color:#dfd">{</span>
+	//TrenchCoat c = this-&gt;repo.findByID(ID);
+<span style = "background-color:#dfd">	TrenchCoat c{ ID,size,length,colour,price,quantity,photograph };
+	int res = this-&gt;repo.updateCoat(c);
+	return res;
+}</span>
+
+std::vector&lt;TrenchCoat&gt; Controller::listTrenchCoatsWithSizeCtrl(const double&amp; size)
+<span style = "background-color:#dfd">{
+	if (size == 0)</span>
+	{
+<span style = "background-color:#dfd">		std::vector&lt;TrenchCoat&gt; res = getRepo().getCoats();
+		return res;</span>
+	}
+<span style = "background-color:#dfd">	std::vector&lt;TrenchCoat&gt; all = getRepo().getCoats();
+	std::vector&lt;TrenchCoat&gt; res = std::vector&lt;TrenchCoat&gt;{};
+	for (int i = 0; i &lt; all.size(); i++)</span>
+	{
+<span style = "background-color:#dfd">		TrenchCoat c = all[i];
+		if (c.getSize() == size)
+			res.push_back(c);
+	}
+	return res;
+}</span>
+
+
+std::vector&lt;TrenchCoat&gt; Controller::listTrenchCoatsWithLengthSmallerThanCtrl(const double&amp; length)
+<span style = "background-color:#dfd">{</span>
+
+<span style = "background-color:#dfd">	std::vector&lt;TrenchCoat&gt; all = getRepo().getCoats();
+	std::vector&lt;TrenchCoat&gt; res = std::vector&lt;TrenchCoat&gt;{};</span>
+	//auto it = std::copy_if(all.begin(), all.end(), res.begin(),[](TrenchCoat c) {return (c.getLength() &lt; length); });
+
+<span style = "background-color:#dfd">	for (int i = 0; i &lt; all.size(); i++)</span>
+	{
+<span style = "background-color:#dfd">		TrenchCoat c = all[i];
+		if (c&lt;length)
+			res.push_back(c);
+	}
+	return res;</span>
+
+<span style = "background-color:#dfd">}</span>
+
+bool comparisonFunction(TrenchCoat c1, TrenchCoat c2)
+<span style = "background-color:#dfd">{
+	return c1.getPrice() &lt; c2.getPrice();
+}</span>
+
+//DynamicVector&amp; Controller::sortByPrice(DynamicVector&amp; trenchCoats)
+std::vector&lt;TrenchCoat&gt;&amp; Controller::sortByPrice(std::vector&lt;TrenchCoat&gt;&amp; trenchCoats)
+<span style = "background-color:#dfd">{</span>
+
+<span style = "background-color:#dfd">	std::sort(trenchCoats.begin(), trenchCoats.end(), comparisonFunction);</span>
+	/*int length = trenchCoats.size();
+	for (int i = 0; i &lt; length-1; i++)
+	{
+	TrenchCoat&amp; c1 = trenchCoats[i];
+	for (int j = i + 1; j &lt; length; j++)
+	{
+	TrenchCoat&amp; c2 = trenchCoats[j];
+	if (c1.getPrice() &gt; c2.getPrice())
+	{
+	TrenchCoat aux{};
+	aux.setID(c1.getID());
+	c1.setID(c2.getID());
+	c2.setID(aux.getID());
+
+	aux.setSize(c1.getSize());
+	c1.setSize(c2.getSize());
+	c2.setSize(aux.getSize());
+
+	aux.setColour(c1.getColour());
+	c1.setColour(c2.getColour());
+	c2.setColour(aux.getColour());
+
+	aux.setPrice(c1.getPrice());
+	c1.setPrice(c2.getPrice());
+	c2.setPrice(aux.getPrice());
+
+	aux.setQuantity(c1.getQuantity());
+	c1.setQuantity(c2.getQuantity());
+	c2.setQuantity(aux.getQuantity());
+
+	aux.setPhotograph(c1.getPhotograph());
+	c1.setPhotograph(c2.getPhotograph());
+	c2.setPhotograph(aux.getPhotograph());
+	}
+	}
+
+	}*/
+<span style = "background-color:#dfd">	return trenchCoats;
+}</span>
+
+void Controller::addCoatToShoppingBasketCtrl(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	this-&gt;basket.add(c);
+}</span>
+
+void Controller::startShoppingBasket()
+<span style = "background-color:#dfd">{
+	this-&gt;basket.start();
+}</span>
+
+void Controller::nextTrenchCoatsShoppingBasket()
+<span style = "background-color:#dfd">{
+	this-&gt;basket.next();
+}</span></pre>
+	</body>
+</html>

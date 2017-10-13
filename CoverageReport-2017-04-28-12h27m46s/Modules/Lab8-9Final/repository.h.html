@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>repository.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include "TrenchCoat.h"
+#include &lt;vector&gt;
+
+class Repository
+{
+private:
+	std::vector &lt;TrenchCoat&gt; trenchCoats;
+public:
+	/// &lt;summary&gt;
+	/// Default constructor. Initializes an object of type repository.
+	/// &lt;/summary&gt;
+<span style = "background-color:#dfd">	Repository() {}</span>
+
+	/// &lt;summary&gt;
+	/// Adds a trench coat to the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;1 - If the coat was added to the repository, 0 - if a coat with the same id already exists and therefore it cannot be added.&lt;/returns&gt;
+	int addCoat(const TrenchCoat&amp; c);
+
+
+	/// &lt;summary&gt;
+	/// Deletes a trench coat from the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;1 - If the coat was deleted from the repository, 0 - if the coat could not be deleted, as there isn't any trench coat in the repository with the given ID.&lt;/returns&gt;
+	int deleteCoat(const TrenchCoat&amp; c);
+
+	/// &lt;summary&gt;
+	/// Updates a trench coat from the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "c"&gt;A coat, of type TrenchCoat.&lt;/param&gt;
+	/// &lt;returns&gt;1 - If the coat was updated from the repository, 0 - if the coat could not be updated, as there isn't any trench coat in the repository with the given ID.&lt;/returns&gt;
+	int updateCoat(const TrenchCoat&amp; c);
+
+	/// &lt;summary&gt;
+	/// Returns the position of the trench coat in the repository.
+	/// &lt;/summary&gt;
+	/// &lt;param name = "ID"&gt;An ID, of type of integer.&lt;/param&gt;
+	/// &lt;returns&gt;-1 - If the repository is empty, or there is no coat with the given ID in the repository, i - the position of the coat with the given ID in the repository.&lt;/returns&gt;
+	int findPositionByID(const int&amp; ID);
+
+	//TrenchCoat findByPosition(const int&amp; pos);
+
+
+	TrenchCoat findByID(const int&amp; ID);
+
+	int updateCoatRef(const TrenchCoat&amp; c);
+
+	TrenchCoat&amp; findByIDRef(const int&amp;ID);
+
+<span style = "background-color:#dfd">	std::vector &lt;TrenchCoat&gt; getCoats() const { return trenchCoats; }</span>
+
+};
+
+//void testRepository();</pre>
+	</body>
+</html>

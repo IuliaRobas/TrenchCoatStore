@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>trenchcoat.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "TrenchCoat.h"
+#include &lt;Windows.h&gt;
+#include &lt;shellapi.h&gt;
+#include &lt;string&gt;
+#include &lt;assert.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+TrenchCoat::TrenchCoat()
+<span style = "background-color:#dfd">{
+	this-&gt;ID = 0;
+	this-&gt;size = 0;
+	this-&gt;length = 0;
+	this-&gt;colour = "";
+	this-&gt;price = 0;
+	this-&gt;quantity = 0;
+	this-&gt;photograph = "";
+}</span>
+
+TrenchCoat::TrenchCoat(const int&amp; ID, const double&amp; size, const double&amp;length, const std::string&amp; colour, const double&amp; price, const double&amp; quantity, const std::string&amp; photograph)
+<span style = "background-color:#dfd">{
+	this-&gt;ID = ID;
+	this-&gt;size = size;
+	this-&gt;length = length;
+	this-&gt;colour = colour;
+	this-&gt;price = price;
+	this-&gt;quantity = quantity;
+	this-&gt;photograph = photograph;
+}</span>
+
+void TrenchCoat::display()
+<span style = "background-color:#dfd">{
+	ShellExecuteA(NULL, NULL, "chrome.exe", this-&gt;getPhotograph().c_str(), NULL, SW_SHOWMAXIMIZED);</span>
+
+<span style = "background-color:#dfd">}</span>
+
+bool TrenchCoat::operator==(const TrenchCoat&amp; c)
+<span style = "background-color:#dfd">{
+	if (this-&gt;getID() != c.getID())
+		return false;
+	return true;
+}</span>
+
+bool TrenchCoat::operator&lt;(const double&amp; length)
+<span style = "background-color:#dfd">{
+	if (this-&gt;getLength() &lt;length)
+		return true;
+	return false;
+}</span>
+/*
+void testTrenchCoat()
+{
+	TrenchCoat c1{ 1,34,15,"red",300,100,"link1" };
+	TrenchCoat c2{ 2,34,15,"blue",500,100,"link2" };
+	assert((c1 == c2) == false);
+	TrenchCoat c3{ 1,36,15,"white",300,100,"link3" };
+	assert(c1 == c3);
+	cout &lt;&lt; "TrenchCoat tested" &lt;&lt; endl;
+}*/</pre>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>shoppingbasket.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "ShoppingBasket.h"
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include "Repository.h"
+#include "TrenchCoat.h"
+using namespace std;
+
+ShoppingBasket::ShoppingBasket()
+<span style = "background-color:#dfd">{
+	this-&gt;sum = 0;
+	this-&gt;current = 0;
+}</span>
+
+void ShoppingBasket::add(const TrenchCoat&amp; trenchCoat)
+<span style = "background-color:#dfd">{
+	this-&gt;trenchCoats.push_back(trenchCoat);
+	this-&gt;sum += trenchCoat.getPrice();
+}</span>
+
+double ShoppingBasket::getTotal()
+<span style = "background-color:#dfd">{
+	return this-&gt;sum;
+}</span>
+
+bool ShoppingBasket::isEmpty()
+<span style = "background-color:#dfd">{
+	return this-&gt;trenchCoats.size() == 0;
+}</span>
+
+
+
+TrenchCoat ShoppingBasket::getCurrentTrenchCoat()
+<span style = "background-color:#dfd">{
+	if (this-&gt;current == this-&gt;trenchCoats.size())
+		this-&gt;current = 0;
+	std::vector &lt;TrenchCoat&gt; elems = this-&gt;trenchCoats;
+	if (elems.size() != 0)
+		return elems[this-&gt;current];
+	return TrenchCoat{};
+}</span>
+
+void ShoppingBasket::start()
+<span style = "background-color:#dfd">{
+	if (this-&gt;trenchCoats.size() == 0)
+		return;
+	this-&gt;current = 0;
+	TrenchCoat currentTrenchCoat = this-&gt;getCurrentTrenchCoat();
+	currentTrenchCoat.display();
+}</span>
+
+void ShoppingBasket::next()
+<span style = "background-color:#dfd">{
+	if (this-&gt;trenchCoats.size() == 0)
+		return;
+	this-&gt;current++;
+	TrenchCoat currentTrenchCoat = this-&gt;getCurrentTrenchCoat();
+	currentTrenchCoat.display();
+}</span>
+
+int ShoppingBasket::getSize()
+<span style = "background-color:#dfd">{
+	return this-&gt;trenchCoats.size();
+}</span>
+/*
+void testShoppingBasket()
+{
+	ShoppingBasket basket{};
+	TrenchCoat c1(11, 34, 15, "beige", 100, 200, "https://cache.net-a-porter.com/images/products/372462/372462_in_pp.jpg");
+	basket.add(c1);
+	TrenchCoat c2(11, 34, 15, "beige", 23, 200, "https://cache.net-a-porter.com/images/products/372462/372462_in_pp.jpg");
+	basket.add(c2);
+	assert(basket.getTotal() == 123);
+	cout &lt;&lt; "ShoppingBasket tested" &lt;&lt; endl;
+}
+*/</pre>
+	</body>
+</html>

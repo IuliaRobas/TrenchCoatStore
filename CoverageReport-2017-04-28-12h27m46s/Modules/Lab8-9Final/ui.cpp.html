@@ -1,0 +1,563 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include "UI.h"
+#include &lt;conio.h&gt;
+using namespace std;
+
+void UI::printModes()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n**********************************************************";
+	cout &lt;&lt; "\nAVAILABLE MODES.\n";
+	cout &lt;&lt; "1 - Administrator mode.\n";
+	cout &lt;&lt; "2 - User mode.\n";
+	cout &lt;&lt; "0 - Exit.\n";
+	cout &lt;&lt; "**********************************************************\n";
+}</span>
+
+void UI::printAdministratorOptions()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n**********************************************************";
+	cout &lt;&lt; "\nAVAILABLE OPTIONS.\n";
+	cout &lt;&lt; "\t1 - Add a new trench coat.\n";
+	cout &lt;&lt; "\t2 - Delete a trench coat.\n";
+	cout &lt;&lt; "\t3 - Update the information of a trench coat.\n";
+	cout &lt;&lt; "\t4 - List all trench coats.\n";
+	cout &lt;&lt; "\t5 - List all trench coats with length smaller then a given length.\n";
+	cout &lt;&lt; "\t6 - Sort trench coats ascendingly by price.\n";
+	cout &lt;&lt; "\t0 - Back.\n";
+	cout &lt;&lt; "**********************************************************\n";
+}</span>
+
+void UI::printUserOptions()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n**********************************************************";
+	cout &lt;&lt; "\nAVAILABLE OPTIONS.\n";
+	cout &lt;&lt; "\t1 - See the trench coats in the database, having a given size.\n";
+	cout &lt;&lt; "\t2 - See shopping basket and the total price of the items.\n";
+	cout &lt;&lt; "\t0 - Back.\n";
+	cout &lt;&lt; "**********************************************************\n";
+}</span>
+
+void UI::printShoppingBasketOptions()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "\n**********************************************************";
+	cout &lt;&lt; "\nSHOPPING BASKET OPTIONS.\n";
+	cout &lt;&lt; "\t1 - Add trench coat to shopping basket.\n";
+	cout &lt;&lt; "\t2 - Next.\n";
+	cout &lt;&lt; "\t0 - Back.\n";
+	cout &lt;&lt; "**********************************************************\n";
+}</span>
+int UI::readIntegerNumber(const char* message)
+<span style = "background-color:#fdd">{</span>
+	char string[10];
+<span style = "background-color:#fdd">	int flag = 0;
+	int r = 0;
+	int res = 0;
+	while (flag == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; message;
+		cin &gt;&gt; string;
+		r = sscanf(string, "%d", &amp;res);
+		flag = (r == 1);
+		if (flag == 0)
+			cout &lt;&lt; "Error reading number! Please type in again!\n";
+	}
+	return res;</span>
+
+<span style = "background-color:#fdd">}</span>
+
+double UI::readFloatNumber(const char* message)
+<span style = "background-color:#fdd">{</span>
+	char string[20];
+<span style = "background-color:#fdd">	int flag = 0;
+	int r = 0;
+	double res = 0;
+	while (flag == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; message;
+		cin &gt;&gt; string;
+		r = sscanf(string, "%lf", &amp;res);
+		flag = (r == 1);
+		if (flag == 0)
+			cout &lt;&lt; "Error reading number! Please type in again!\n";
+	}
+	return res;
+}</span>
+void UI::startAdministratorMode()
+<span style = "background-color:#fdd">{</span>
+
+<span style = "background-color:#fdd">	while (1)</span>
+	{
+<span style = "background-color:#fdd">		printAdministratorOptions();
+		int option = readIntegerNumber("Please enter your option: ");
+		if (option == 0)
+			return;</span>
+
+<span style = "background-color:#fdd">		switch (option)</span>
+		{
+		case 4:
+		{
+<span style = "background-color:#fdd">			this-&gt;displayAllCoatsRepo();
+			break;</span>
+		}
+		case 1:
+		{
+<span style = "background-color:#fdd">			this-&gt;addCoatToRepo();
+			break;</span>
+		}
+		case 2:
+		{
+<span style = "background-color:#fdd">			this-&gt;deleteCoatFromRepo();
+			break;</span>
+		}
+		case 3:
+		{
+<span style = "background-color:#fdd">			this-&gt;updateCoatFromRepo();
+			break;</span>
+		}
+		case 5:
+		{
+<span style = "background-color:#fdd">			this-&gt;listTrenchCoatsLengthSmallerThan();
+			break;</span>
+		}
+		case 6:
+		{
+<span style = "background-color:#fdd">			this-&gt;sortAscendinglyByPriceUI();</span>
+			break;
+		}
+		}
+<span style = "background-color:#fdd">	}</span>
+
+
+<span style = "background-color:#fdd">}</span>
+
+int UI::ShoppingBasketOption()
+<span style = "background-color:#fdd">{
+	printShoppingBasketOptions();
+	int option = readIntegerNumber("Please enter your option: ");
+	return option;</span>
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::addCoatToShoppingBasket(const TrenchCoat&amp; c)
+<span style = "background-color:#fdd">{
+	this-&gt;ctrl.addCoatToShoppingBasketCtrl(c);
+}</span>
+
+void UI::listTrenchCoatsLengthSmallerThan()
+<span style = "background-color:#fdd">{
+	double length = readFloatNumber("Please enter the length: ");
+	std::vector&lt;TrenchCoat&gt; coats = this-&gt;ctrl.listTrenchCoatsWithLengthSmallerThanCtrl(length);</span>
+	//std::vector&lt;TrenchCoat&gt; coats = v.getAllElems();
+<span style = "background-color:#fdd">	if (coats.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "There are no coats with the length smaller than the given one in the repository." &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	else
+		for (int i = 0; i &lt; coats.size(); i++)</span>
+		{
+<span style = "background-color:#fdd">			TrenchCoat c = coats[i];
+			cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; "$ " &lt;&lt; c.getQuantity() &lt;&lt; " " &lt;&lt; endl;</span>
+
+<span style = "background-color:#fdd">		}</span>
+
+
+<span style = "background-color:#fdd">}</span>
+void UI::listTrenchCoatsWithSizeUI()
+<span style = "background-color:#fdd">{
+	double size = readIntegerNumber("Please enter the size or 0 for no size: ");</span>
+	//cout &lt;&lt; size;
+<span style = "background-color:#fdd">	std::vector&lt;TrenchCoat&gt; v = this-&gt;ctrl.listTrenchCoatsWithSizeCtrl(size);
+	if (size == 0)</span>
+	{
+<span style = "background-color:#fdd">		if (v.size() == 0)</span>
+		{
+<span style = "background-color:#fdd">			cout &lt;&lt; "There are no coats in the repository." &lt;&lt; endl;
+			return;</span>
+		}
+<span style = "background-color:#fdd">		else
+			for (int i = 0; i &lt; v.size(); i++)</span>
+			{
+<span style = "background-color:#fdd">				TrenchCoat c = v[i];
+				cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; "$ " &lt;&lt; c.getQuantity() &lt;&lt; " " &lt;&lt; endl;
+				c.display();</span>
+				//system("pause");
+<span style = "background-color:#fdd">				int option = ShoppingBasketOption();</span>
+				//cout &lt;&lt; option;
+<span style = "background-color:#fdd">				if (option == 0)
+					return;
+				switch (option)</span>
+				{
+				case 1:
+				{
+
+<span style = "background-color:#fdd">					this-&gt;addCoatToShoppingBasket(c);
+					cout &lt;&lt; "Coat added to shopping basket." &lt;&lt; endl;</span>
+
+<span style = "background-color:#fdd">					int ID = c.getID();
+					double size = c.getSize();
+					double length = c.getLength();
+					std::string colour = c.getColour();
+					double price = c.getPrice();
+					double quantity = c.getQuantity() - 1;
+					std::string link = c.getPhotograph();
+					int res = this-&gt;ctrl.updateCoatFromRepository(ID, size, length, colour, price, quantity, link);
+					if (res == 0)</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "The trench coat could not be updated as there isn't any coat with the given ID in the repository." &lt;&lt; endl;</span>
+					}
+<span style = "background-color:#fdd">					else</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "Trench coat quantity successfully updated." &lt;&lt; endl;</span>
+					}
+
+
+<span style = "background-color:#fdd">					double total = this-&gt;ctrl.getShoppingBasket().getTotal();
+					cout &lt;&lt; "Total sum: " &lt;&lt; total &lt;&lt; endl;
+					continue;
+				}</span>
+				}
+<span style = "background-color:#fdd">			}</span>
+
+
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		if (v.size() == 0)</span>
+		{
+<span style = "background-color:#fdd">			cout &lt;&lt; "There are no coats with the given size in the repository." &lt;&lt; endl;
+			return;</span>
+		}
+<span style = "background-color:#fdd">		while (1)</span>
+		{
+<span style = "background-color:#fdd">			for (int i = 0; i &lt; v.size(); i++)</span>
+			{
+<span style = "background-color:#fdd">				TrenchCoat c = v[i];
+				cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; "$ " &lt;&lt; c.getQuantity() &lt;&lt; " " &lt;&lt; endl;
+				c.display();</span>
+				//system("pause");
+<span style = "background-color:#fdd">				int option = ShoppingBasketOption();</span>
+				//cout &lt;&lt; option;
+<span style = "background-color:#fdd">				if (option == 0)
+					return;
+				switch (option)</span>
+				{
+				case 1:
+				{
+
+<span style = "background-color:#fdd">					this-&gt;addCoatToShoppingBasket(c);
+					cout &lt;&lt; "Coat added to shopping basket." &lt;&lt; endl;</span>
+
+<span style = "background-color:#fdd">					int ID = c.getID();
+					double size = c.getSize();
+					double length = c.getLength();
+					std::string colour = c.getColour();
+					double price = c.getPrice();
+					double quantity = c.getQuantity() - 1;
+					std::string link = c.getPhotograph();
+					int res = this-&gt;ctrl.updateCoatFromRepository(ID, size, length, colour, price, quantity, link);
+					if (res == 0)</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "The trench coat could not be updated as there isn't any coat with the given ID in the repository." &lt;&lt; endl;</span>
+					}
+<span style = "background-color:#fdd">					else</span>
+					{
+<span style = "background-color:#fdd">						cout &lt;&lt; "Trench coat quantity successfully updated." &lt;&lt; endl;</span>
+					}
+
+
+<span style = "background-color:#fdd">					double total = this-&gt;ctrl.getShoppingBasket().getTotal();
+					cout &lt;&lt; "Total sum: " &lt;&lt; total &lt;&lt; endl;</span>
+
+<span style = "background-color:#fdd">				}</span>
+				case 2:
+				{
+					break;
+				}
+				}
+<span style = "background-color:#fdd">			}
+		}</span>
+	}
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::displayShoppingBasketUI()
+<span style = "background-color:#fdd">{
+	if (this-&gt;ctrl.getShoppingBasket().isEmpty())</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Nothing to display. The shopping basket is empty." &lt;&lt; endl;
+		return;</span>
+	}
+
+<span style = "background-color:#fdd">	double total = this-&gt;ctrl.getShoppingBasket().getTotal();
+	cout &lt;&lt; "Total sum: " &lt;&lt; total &lt;&lt; endl;</span>
+	//this-&gt;ctrl.startShoppingBasket();
+	/*int size = this-&gt;ctrl.getShoppingBasket().getSize();
+	for (int i = 0; i &lt; size; i++)
+	{
+	TrenchCoat c = this-&gt;ctrl.getShoppingBasket().getCurrentTrenchCoat();
+	c.display();
+	cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; " " &lt;&lt; c.getQuantity() &lt;&lt; endl;
+	system("pause");
+	}*/
+<span style = "background-color:#fdd">	this-&gt;ctrl.startShoppingBasket();
+	TrenchCoat c = this-&gt;ctrl.getShoppingBasket().getCurrentTrenchCoat();
+	cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; " " &lt;&lt; c.getQuantity() &lt;&lt; endl;
+	system("pause");</span>
+
+	//cout &lt;&lt; this-&gt;ctrl.getShoppingBasket().getSize() &lt;&lt; endl;
+<span style = "background-color:#fdd">	for (int i = 1; i&lt;this-&gt;ctrl.getShoppingBasket().getSize(); i++)</span>
+	{
+<span style = "background-color:#fdd">		this-&gt;ctrl.nextTrenchCoatsShoppingBasket();
+		TrenchCoat c = this-&gt;ctrl.getShoppingBasket().getCurrentTrenchCoat();
+		cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; " " &lt;&lt; c.getQuantity() &lt;&lt; endl;
+		system("pause");</span>
+
+
+
+<span style = "background-color:#fdd">	}
+}</span>
+void UI::startUserMode()
+<span style = "background-color:#fdd">{</span>
+
+<span style = "background-color:#fdd">	while (1)</span>
+	{
+<span style = "background-color:#fdd">		printUserOptions();
+		int option = readIntegerNumber("Please enter your option: ");
+		if (option == 0)
+			return;</span>
+
+<span style = "background-color:#fdd">		switch (option)</span>
+		{
+		case 1:
+		{
+<span style = "background-color:#fdd">			this-&gt;listTrenchCoatsWithSizeUI();
+			break;</span>
+		}
+		case 2:
+		{
+<span style = "background-color:#fdd">			this-&gt;displayShoppingBasketUI();</span>
+		}
+		}
+<span style = "background-color:#fdd">	}</span>
+
+
+<span style = "background-color:#fdd">}</span>
+
+
+void UI::addCoatToRepo()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "Please type in the information: " &lt;&lt; endl;</span>
+	/*int ID = 0;
+	cout &lt;&lt; "ID: ";
+	cin &gt;&gt; ID;*/
+<span style = "background-color:#fdd">	int ID = readIntegerNumber("ID: ");</span>
+
+<span style = "background-color:#fdd">	cin.ignore();</span>
+	//cout &lt;&lt; "Size: ";
+<span style = "background-color:#fdd">	double size = readFloatNumber("Size: ");</span>
+	//cin &gt;&gt; size;
+<span style = "background-color:#fdd">	cin.ignore(); //skips to the next newline</span>
+
+<span style = "background-color:#fdd">	double length = readFloatNumber("Length: ");
+	cin.ignore();</span>
+
+	//to ignore anything else on the same line which is a non-number
+	//so that it doesn't cause a parse failure	
+<span style = "background-color:#fdd">	std::string colour;</span>
+
+<span style = "background-color:#fdd">	int flag = 0;
+	while (flag == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Colour: ";
+		getline(cin, colour);
+		for (int i = 0; i &lt;colour.length(); i++)
+			if (isdigit(colour[i]))</span>
+			{
+<span style = "background-color:#fdd">				cout &lt;&lt; "Error reading string! Please type in again!\n";
+				break;</span>
+			}
+<span style = "background-color:#fdd">			else
+				flag = 1;
+	}
+	double price = readFloatNumber("Price: ");</span>
+	//cout &lt;&lt; "Price: ";
+	///cin &gt;&gt; price;
+<span style = "background-color:#fdd">	cin.ignore();
+	double quantity = readFloatNumber("Quantity: ");</span>
+	//cout &lt;&lt; "Quantity: ";
+	//cin &gt;&gt; quantity;
+<span style = "background-color:#fdd">	cin.ignore();
+	cout &lt;&lt; "Photograph link: ";
+	std::string link;
+	getline(cin, link);</span>
+
+<span style = "background-color:#fdd">	int res = this-&gt;ctrl.addCoatToRepository(ID, size, length, colour, price, quantity, link);
+	if (res == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "The trench coat could not be added as there already exists a product with the same ID." &lt;&lt; endl;</span>
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Trench coat successfully added." &lt;&lt; endl;</span>
+	}
+<span style = "background-color:#fdd">}</span>
+
+void UI::deleteCoatFromRepo()
+<span style = "background-color:#fdd">{
+	int ID = 0;
+	cout &lt;&lt; "Please type in the ID of the trench coat to be deleted: ";
+	cin &gt;&gt; ID;
+	cin.ignore();
+	int res = this-&gt;ctrl.deleteCoatFromRepository(ID);
+	if (res == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "The trench coat could not be deleted as there isn't any trench coat with the given ID." &lt;&lt; endl;</span>
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Trench coat successfully deleted." &lt;&lt; endl;</span>
+	}
+<span style = "background-color:#fdd">}</span>
+
+void UI::updateCoatFromRepo()
+<span style = "background-color:#fdd">{
+	int ID = 0;
+	cout &lt;&lt; "Please type in the ID of the trench coat to be updated: ";
+	cin &gt;&gt; ID;
+	cin.ignore();
+	cout &lt;&lt; "Please type in the new information about the trench coat: " &lt;&lt; endl;
+	cout &lt;&lt; "Size: ";</span>
+	double size;
+<span style = "background-color:#fdd">	cin &gt;&gt; size;</span>
+	//cin.ignore(); //skips to the next newline
+	//to ignore anything else on the same line which is a non-number
+	//so that it doesn't cause a parse failure
+<span style = "background-color:#fdd">	cout &lt;&lt; "Length: ";</span>
+	double length;
+<span style = "background-color:#fdd">	cin &gt;&gt; length;
+	cin.ignore();
+	cout &lt;&lt; "Colour: ";
+	std::string colour;
+	getline(cin, colour);
+	double price = 0;
+	cout &lt;&lt; "Price: ";
+	cin &gt;&gt; price;
+	double quantity = 0;
+	cout &lt;&lt; "Quantity: ";
+	cin &gt;&gt; quantity;
+	cin.ignore();
+	cout &lt;&lt; "Photograph link: ";
+	std::string link;
+	getline(cin, link);</span>
+
+<span style = "background-color:#fdd">	int res = this-&gt;ctrl.updateCoatFromRepository(ID, size, length, colour, price, quantity, link);
+	if (res == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "The trench coat could not be updated as there isn't any coat with the given ID in the repository." &lt;&lt; endl;</span>
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Trench coat successfully updated." &lt;&lt; endl;</span>
+	}
+
+<span style = "background-color:#fdd">}</span>
+void UI::displayAllCoatsRepo()
+<span style = "background-color:#fdd">{</span>
+	//DynamicVector v = this-&gt;ctrl.getRepo().getCoats();
+<span style = "background-color:#fdd">	std::vector&lt;TrenchCoat&gt;v = this-&gt;ctrl.getRepo().getCoats();</span>
+	//TrenchCoat* coats = v.getAllElems();
+<span style = "background-color:#fdd">	if (v.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "There are no coats in the repository." &lt;&lt; endl;
+		return;</span>
+	}
+<span style = "background-color:#fdd">	for (int i = 0; i &lt; v.size(); i++)</span>
+	{
+<span style = "background-color:#fdd">		TrenchCoat c = v[i];
+		cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; "$ " &lt;&lt; c.getQuantity() &lt;&lt; " " &lt;&lt; endl;</span>
+		//c.display();
+		//system("pause");
+<span style = "background-color:#fdd">	}
+}</span>
+
+
+void UI::sortAscendinglyByPriceUI()
+<span style = "background-color:#fdd">{</span>
+	//DynamicVector&amp; v = this-&gt;ctrl.getRepo().getCoats();
+<span style = "background-color:#fdd">	std::vector&lt;TrenchCoat&gt; &amp; v = this-&gt;ctrl.getRepo().getCoats();
+	v = this-&gt;ctrl.sortByPrice(v);</span>
+	//TrenchCoat* coats = v.;
+<span style = "background-color:#fdd">	if (v.size() == 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "There are no coats in the repository." &lt;&lt; endl;
+		return;</span>
+	}
+
+<span style = "background-color:#fdd">	for (int i = 0; i &lt; v.size(); i++)</span>
+	{
+<span style = "background-color:#fdd">		TrenchCoat c = v[i];
+		cout &lt;&lt; c.getID() &lt;&lt; " " &lt;&lt; c.getSize() &lt;&lt; " " &lt;&lt; c.getLength() &lt;&lt; " " &lt;&lt; c.getColour() &lt;&lt; " " &lt;&lt; c.getPrice() &lt;&lt; "$ " &lt;&lt; c.getQuantity() &lt;&lt; " " &lt;&lt; endl;</span>
+
+<span style = "background-color:#fdd">	}
+}</span>
+
+void startUserMode()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "USER MODE!\n";
+}</span>
+
+void UI::initData()
+<span style = "background-color:#fdd">{
+	this-&gt;ctrl.addCoatToRepository(1, 34, 20, "beige", 125, 200, "https://cache.net-a-porter.com/images/products/372462/372462_in_pp.jpg");
+	this-&gt;ctrl.addCoatToRepository(2, 36, 25, "navy blue", 125, 200, "https://static.independent.co.uk/s3fs-public/styles/story_medium/public/thumbnails/image/2015/02/26/16/AN64094637Phase-Eight.jpg");
+	this-&gt;ctrl.addCoatToRepository(3, 38, 20, "black", 125, 200, "http://media.newlookassets.com/i/newlook/362712101/womens/jackets-and-coats/macs/black-belted-trench-coat-/?$new_pdp_szoom_image_600$");
+	this-&gt;ctrl.addCoatToRepository(4, 38, 10, "white", 100, 300, "https://s-media-cache-ak0.pinimg.com/736x/91/61/77/916177e8eb0e04f55f5823025ded838a.jpg");
+	this-&gt;ctrl.addCoatToRepository(5, 40, 10, "red", 200, 200, "https://rainfrog.co.uk/wp-content/uploads/2015/08/Red-Short-Trenchcoat-Petra-1500.jpg");
+	this-&gt;ctrl.addCoatToRepository(6, 32, 15, "khaki", 100, 150, "https://www.vanessaseward.com/media/catalog/product/cache/4/image/1800x/040ec09b1e35df139433887a97daa66f/apc/imedia/COBOL-V01194_JAA_APLAT_00.jpg");
+	this-&gt;ctrl.addCoatToRepository(7, 30, 20, "leopard", 400, 50, "http://nord.imgix.net/Zoom/18/_100644518.jpg?fit=fill&amp;bg=FFF&amp;fm=jpg&amp;w=391&amp;h=600&amp;dpr=1.5&amp;q=52.5");
+	this-&gt;ctrl.addCoatToRepository(8, 34, 10, "burgundy", 450, 80, "https://cdn-images.farfetch-contents.com/11/90/06/39/11900639_8885327_400.jpg");
+	this-&gt;ctrl.addCoatToRepository(9, 32, 5, "beige", 350, 100, "http://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/83/P00220626.jpg");
+	this-&gt;ctrl.addCoatToRepository(10, 36, 10, "white", 400, 40, "https://cdn-images.farfetch-contents.com/11/43/71/44/11437144_8384040_400.jpg");
+}</span>
+
+void UI::startUI()
+<span style = "background-color:#fdd">{
+	this-&gt;initData();
+	while (1)</span>
+	{
+<span style = "background-color:#fdd">		printModes();
+		int mode = readIntegerNumber("Please enter your option: ");
+		if (mode == 0)
+			break;
+		switch (mode)</span>
+		{
+		case 1:
+		{
+<span style = "background-color:#fdd">			startAdministratorMode();
+			break;</span>
+		}
+		case 2:
+		{
+<span style = "background-color:#fdd">			startUserMode();</span>
+			break;
+		}
+		}
+<span style = "background-color:#fdd">	}
+}</span></pre>
+	</body>
+</html>
