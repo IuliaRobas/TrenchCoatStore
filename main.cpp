@@ -11,8 +11,6 @@
 #include "HTMLShoppingBasket.h"
 #include "RepositoryFile.h"
 
-//#include "FileRepository.h"
-
 using namespace std;
 
 int main()
@@ -24,7 +22,7 @@ int main()
 		//Repository repo{ "Coats.txt" };	
 		
 		VirtualRepository* repo = new RepositoryFile{ "Coats.txt" };
-		//FileShoppingBasket* HTMLbasket = new HTMLShoppingBasket{};
+	
 		cout << "\n**********************************************************";
 		cout << "\nSHOPPING BASKET FILE STORAGE OPTIONS.\n";
 		cout << "1 - CSV file.\n";
