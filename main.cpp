@@ -18,23 +18,6 @@ using namespace std;
 int main()
 {
 	
-	//Tests::testAll();
-
-	//testDynamicVector(); 	
-	//testTrenchCoat(); 
-	//testRepository();
-	//testDynamicVectorT<TrenchCoat>();
-	//testShoppingBasket();
-
-
-	/*
-	Repository repo{};
-	Controller ctrl{ repo };
-	UI ui{ ctrl };
-	ui.startUI();
-
-	_CrtDumpMemoryLeaks();
-	*/
 	try
 	{
 
